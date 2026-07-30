@@ -43,6 +43,7 @@ def draw_plot(df: pd.DataFrame) -> None:
              color="b",
              label="Velocity"
              )
+
     plt.plot(time,
              temperature,
              marker=".",
@@ -73,15 +74,12 @@ def calc_average_temp(df: pd.DataFrame) -> None:
     print("Average temperatureRotorBack for >= 120 km/h:", greater["temperatureRotorBack"].mean(), "°C")
     print("Average temperatureRotorBack for < 120 km/h:", lower["temperatureRotorBack"].mean(), "°C\n")
 
-
-
 def calc_correlation(df: pd.DataFrame) -> None:
     correlation_back = df["velocity"].corr(df["temperatureRotorBack"])
     correlation_front = df["velocity"].corr(df["temperatureRotorFront"])
 
     print("Correlation between Velocity and TemperatureRotorBack =", correlation_back)
     print("Correlation between Velocity and TemperatureRotorFront =", correlation_front, "\n")
-
 
 def create_histograms(df: pd.DataFrame) -> None:
     # Create Histogram Data
@@ -120,7 +118,6 @@ def create_histograms(df: pd.DataFrame) -> None:
     plt.tight_layout()
     plt.show()
 
-
 def calc_driving_statistics_laps(df: pd.DataFrame) -> float:
     start_val = df.iloc[0]["timeUnix"]/1000     # convert to seconds
     end_val = df.iloc[-1]["timeUnix"]/1000      # convert to seconds
@@ -128,23 +125,21 @@ def calc_driving_statistics_laps(df: pd.DataFrame) -> float:
     return end_val - start_val
 
 def calc_driving_statistics_average_vel(df: pd.DataFrame) -> float:
-
     return df["velocity"].mean()
 
 
-#data_path = 'C:/Users/stras/Desktop/TestDataRotor (1).csv'
-data_path = 'data/TestDataRotor (1).csv'
+DATA_PATH = 'data/TestDataRotor (1).csv'
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
 
     # Read CSV to Pandas DataFrame
-    trip_data = read_csv(data_path)
+    trip_data = read_csv(DATA_PATH)
 
     # Remove corrupted Data like null or NaN
     trip_data = clean_data(trip_data)
 
-    # Lable Data with Velocity Value of 120 and higher
+    # Label Data with Velocity Value of 120 and higher
     labeled_data = label_data(trip_data)
 
     # Find matching Vehicles and Trips
