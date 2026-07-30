@@ -25,7 +25,6 @@ def matching_trips(df: pd.DataFrame) -> list:
         .tolist()
     )
     print("tripIds for >= 120 km/h calculation:", trips[0], "and", trips[1])
-
     return trips
 
 def draw_plot(df: pd.DataFrame) -> None:
